@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Task7 - Race</title>
+<style>
+body{font-family:Arial;display:flex;flex-direction:column;align-items:center;padding:20px;background:#fff}
+.track{width:100%;max-width:880px;height:160px;border:2px solid #ddd;border-radius:8px;position:relative;overflow:hidden;background:linear-gradient(#fff,#f3f3f3)}
+.robot{width:80px;height:80px;background:#b5651d;border-radius:12px;position:absolute;left:8px;top:36px;transition:left .2s linear}
+.controls{display:flex;gap:8px;margin:12px}
+</style>
+</head>
+<body>
+<h1>Task 7 — Robot Race Simulation</h1>
+<div class="controls">
+<button onclick="start()">Start Race</button>
+<button onclick="boost()">Boost</button>
+<button onclick="slow()">Slow</button>
+<button onclick="resetPos()">Reset</button>
+</div>
+<div class="track" id="track">
+<div id="r" class="robot"></div>
+</div>
+<script>
+const r=document.getElementById('r'); let pos=8; let speed=60; let timer=null;
+function start(){ if(timer) clearInterval(timer); timer=setInterval(()=>{pos+=2; if(pos>760)pos=760; r.style.left=pos+'px';}, 100)}
+function boost(){pos+=40; r.style.left=pos+'px'}
+function slow(){pos-=40; if(pos<8)pos=8; r.style.left=pos+'px'}
+function resetPos(){pos=8; r.style.left=pos+'px'; if(timer)clearInterval(timer); timer=null}
+</script>
+</body></html>
